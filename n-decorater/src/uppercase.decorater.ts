@@ -16,10 +16,12 @@ export function MyProp(options?: MyPropOptions): PropertyDecorator {
   };
 }
 
-export function getMyPropOptions(
+export const getMyPropOptions = <Type>(
+  val: Type,
   // eslint-disable-next-line @typescript-eslint/ban-types
-  target: Object,
+  target: Type,
   propertyKey: string | symbol,
-): MyPropOptions | undefined {
+): MyPropOptions | undefined => {
+  console.log(Object.getOwnPropertyNames(val));
   return Reflect.getMetadata(MY_PROP_METADATA_KEY, target, propertyKey);
-}
+};
