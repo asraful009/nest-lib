@@ -9,14 +9,18 @@ export class OrmQuerService {
   //   this.__clazz = clazz;
   // }
 
-  public getQuery<TYPE>(s: TYPE): string {
-    console.log(s.constructor.name);
+  public getQuery<TYPE>(s: TYPE, classRef: { new (arg: string) }): string {
+    console.log(classRef);
 
     const propertyKeys: string[] = Object.getOwnPropertyNames(s);
     for (const key of propertyKeys) {
       console.log({
         k: key,
-        op: Reflect.getMetadata(this.MY_PROP_METADATA_KEY, P.prototype, key),
+        op: Reflect.getMetadata(
+          this.MY_PROP_METADATA_KEY,
+          classRef.prototype,
+          key,
+        ),
         v: s[key],
       });
     }

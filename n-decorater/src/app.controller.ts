@@ -15,7 +15,7 @@ export class AppController {
   @Get()
   getHello(@Query() p: P): string {
     // console.log(p, getMyPropOptions(p, P.prototype, 'area'));
-    this.ormQuerService.getQuery<P>(p);
+    this.ormQuerService.getQuery<P>(p, P);
     return '';
   }
 }
